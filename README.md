@@ -1,1 +1,1 @@
-# tic-tac-toe starter code
+# tic-tac-toe by Kostas Argyros
