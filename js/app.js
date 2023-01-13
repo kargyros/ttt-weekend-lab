@@ -64,7 +64,7 @@ board.forEach((cell, idx) => {
   if (!winner){
     message.innerText = `It's ${turn === 1 ? "Tom's" : "Jerry's"} turn!`
   } else if (winner === 'T' ) { 
-    message.innerText = `Tie Game! Play again!`
+    message.innerText = `Tie game! Play again!`
     resetBtn.removeAttribute("hidden")
   } else {
     message.innerText = `Congratulations! ${winner === 1 ? 'Tom' : 'Jerry'} is the winner!`
