@@ -32,8 +32,6 @@ resetBtn.addEventListener('click', init);
 
 
 
-
-
 /*-------------------------------- Functions --------------------------------*/
 init();
 
@@ -41,6 +39,7 @@ function init(){
   board = [null, null, null, null, null, null, null, null, null]
   turn = 1
   winner = null
+  resetBtn.setAttribute('hidden', true)
   render()
 }
 
@@ -52,22 +51,24 @@ board.forEach((cell, idx) => {
     letter = '🐱'
     color = 'white'
   } else if (cell === -1){
-    letter = '🐶'
+    letter = '🐭'
     color = 'white'
   } else if (cell === null) {
     letter = ''
-    color = 'black'
+    color = 'white'
   }
     squares[idx].textContent = letter
     squares[idx].style.background = color
 
   });
   if (!winner){
-    message.innerText = `It is ${turn === 1 ? "Kostas's" : "Jack's"} turn!`
+    message.innerText = `It's ${turn === 1 ? "Tom's" : "Jerry's"} turn!`
   } else if (winner === 'T' ) { 
     message.innerText = `Tie Game! Play again!`
+    resetBtn.removeAttribute("hidden")
   } else {
-    message.innerText = `Congratulations! ${winner === 1 ? 'Kostas' : 'Jack'} is the winner!`
+    message.innerText = `Congratulations! ${winner === 1 ? 'Tom' : 'Jerry'} is the winner!`
+    resetBtn.removeAttribute("hidden")
   }
 }
 
