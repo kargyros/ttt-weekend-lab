@@ -20,12 +20,18 @@ const squares = document.querySelectorAll('section > div')
 
 const message = document.getElementById('message')
 
+const resetBtn = document.getElementById('reset')
 
 
 /*----------------------------- Event Listeners -----------------------------*/
 for (let i = 0; i < squares.length; i++) {
   squares[i].addEventListener("click", handleClick);
 }
+
+resetBtn.addEventListener('click', init)
+
+
+
 
 
 /*-------------------------------- Functions --------------------------------*/
