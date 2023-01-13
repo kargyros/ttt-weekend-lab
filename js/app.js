@@ -1,5 +1,14 @@
 /*-------------------------------- Constants --------------------------------*/
-
+const winArr = [
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 4, 8],
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 8],
+  [2, 4, 6],
+]
 
 
 /*---------------------------- Variables (state) ----------------------------*/
@@ -14,7 +23,9 @@ const message = document.getElementById('message')
 
 
 /*----------------------------- Event Listeners -----------------------------*/
-
+squares.forEach((square) => {square.addEventListener('click', handleClick)
+  
+});
 
 
 /*-------------------------------- Functions --------------------------------*/
@@ -38,8 +49,8 @@ board.forEach((cell, idx) => {
     letter = '😶‍🌫️'
     color = 'orange'
   } else if (cell === null) {
-    letter = '🙊'
-    color = 'yellow'
+    letter = ''
+    color = 'white'
   }
     squares[idx].innerText = letter
     squares[idx].style.background = color
@@ -53,4 +64,16 @@ board.forEach((cell, idx) => {
     message.innerText = `Congratulations! ${winner === 1 ? 'Kostas' : 'Jack'} is the winner!`
   }
 }
+
+function handleClick(event) {
+  let sqValue = parseInt(event.target.id.replace('sqr', ''))
+  if (board[sqValue] || winner){
+    return 
+  } board[sqValue] = turn
+  turn *= -1
+  winner = getWinner()
+  render()
+}
+
+
 
