@@ -24,11 +24,11 @@ const resetBtn = document.getElementById('reset')
 
 
 /*----------------------------- Event Listeners -----------------------------*/
-for (let i = 0; i < squares.length; i++) {
-  squares[i].addEventListener("click", handleClick);
-}
 
-resetBtn.addEventListener('click', init)
+squares.forEach((square) => {square.addEventListener('click', handleClick)
+});
+
+resetBtn.addEventListener('click', init);
 
 
 
