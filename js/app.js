@@ -16,16 +16,16 @@ const winArr = [
 let board, turn, isWinner 
 
 /*------------------------ Cached Element References ------------------------*/
-const squares = document.getElementsByClassName('sqr')
+const squares = document.querySelectorAll('section > div')
 
 const message = document.getElementById('message')
 
 
 
 /*----------------------------- Event Listeners -----------------------------*/
-squares.forEach((square) => {square.addEventListener('click', handleClick)
-  
-});
+for (let i = 0; i < squares.length; i++) {
+  squares[i].addEventListener("click", handleClick);
+}
 
 
 /*-------------------------------- Functions --------------------------------*/
@@ -43,30 +43,30 @@ board.forEach((cell, idx) => {
     let letter
     let color
   if (cell === 1){
-    letter = '🥸'
-    color = 'green'
+    letter = '🐱'
+    color = 'white'
   } else if (cell === -1){
-    letter = '😶‍🌫️'
-    color = 'orange'
+    letter = '🐶'
+    color = 'white'
   } else if (cell === null) {
     letter = ''
-    color = 'white'
+    color = 'black'
   }
-    squares[idx].innerText = letter
+    squares[idx].textContent = letter
     squares[idx].style.background = color
 
   });
   if (!winner){
     message.innerText = `It is ${turn === 1 ? "Kostas's" : "Jack's"} turn!`
   } else if (winner === 'T' ) { 
-    `Tie Game! Play again!`
+    message.innerText = `Tie Game! Play again!`
   } else {
     message.innerText = `Congratulations! ${winner === 1 ? 'Kostas' : 'Jack'} is the winner!`
   }
 }
 
 function handleClick(event) {
-  let sqValue = parseInt(event.target.id.replace('sqr', ''))
+  let sqValue = parseInt(event.target.id.replace('sq', ''))
   if (board[sqValue] || winner){
     return 
   } board[sqValue] = turn
@@ -75,5 +75,20 @@ function handleClick(event) {
   render()
 }
 
+function getWinner(){
+  for (let i = 0; i < winArr.length; i++) {
+    let [sq1, sq2, sq3] = winArr[i];
+    if (board[sq1] + board[sq2] + board[sq3] === 3) {
+      return 1
+    } else if (board[sq1] + board[sq2] + board[sq3] === -3){
+      return -1;
+    }
+  } 
+    if(!board.includes(null)){
+      return 'T';
+    } else {
+      return null
+    }
+}
 
 
